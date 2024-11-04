@@ -1,0 +1,14 @@
+import rhinoscriptsyntax as rs
+
+A = (0,0,0)
+B = (50,100,0)
+C = (100,0,0)
+Triangles = [rs.AddPolyline([A,B,C,A])]
+Geometry = Triangles
+for i in range(Depth):
+    newTriangles = []
+    for triangle in Triangles:
+        points = rs.PolylineVertices(triangle)
+        for i in range(3): # each corner of triangle
+            newTriangles +=[rs.ScaleObject(triangle,points[i],(0.5,0.5,0.5),True)]
+    Triangles += newTriangles
